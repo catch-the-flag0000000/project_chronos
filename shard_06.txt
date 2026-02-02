@@ -1,36 +1,52 @@
-Collecting numpy==1.21.0
-  Downloading numpy-1.21.0-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
-     |████████████████████████████████| 15.7 MB 4.5 MB/s 
-Collecting pandas==1.3.0
-  Downloading pandas-1.3.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (10.8 MB)
-     |████████████████████████████████| 10.8 MB 6.2 MB/s 
-Collecting flask
-  Downloading Flask-2.0.1-py3-none-any.whl (95 kB)
-     |████████████████████████████████| 95 kB 10.1 MB/s 
-Requirement already satisfied: python-dateutil>=2.7.3 in /usr/lib/python3.9/site-packages (from pandas==1.3.0) (2.8.1)
-Requirement already satisfied: pytz>=2017.3 in /usr/lib/python3.9/site-packages (from pandas==1.3.0) (2021.1)
-ERROR: Could not find a version that satisfies the requirement tensorflow-gpu (from versions: none)
-ERROR: No matching distribution found for tensorflow-gpu
-WARNING: You are using pip version 21.1.1; however, version 21.1.3 is available.
-You should consider upgrading via the '/usr/bin/python3 -m pip install --upgrade pip' command.
-Attempting to uninstall: numpy
-  Found existing installation: numpy 1.19.5
-  Uninstalling numpy-1.19.5:
-    Would remove:
-      /usr/local/bin/f2py
-      /usr/local/bin/f2py3
-      /usr/local/bin/f2py3.9
-      /usr/local/lib/python3.9/site-packages/numpy-1.19.5.dist-info/*
-      /usr/local/lib/python3.9/site-packages/numpy/*
-Proceed (y/n)? y
-  Successfully uninstalled numpy-1.19.5
-ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
-scipy 1.6.0 requires numpy<1.23.0,>=1.16.5, but you have numpy 1.21.0 which is incompatible.
-tensorflow 2.4.1 requires numpy~=1.19.2, but you have numpy 1.21.0 which is incompatible.
-[100%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
-[ 25%] Linking CXX shared library ../../lib/libopencv_core.so
-/usr/bin/ld: cannot find -lCUDA::cublas
-collect2: error: ld returned 1 exit status
-make[2]: *** [modules/core/CMakeFiles/opencv_core.dir/build.make:1250: lib/libopencv_core.so.3.4.1] Error 1
-make[1]: *** [CMakeFiles/Makefile2:1500: modules/core/CMakeFiles/opencv_core.dir/all] Error 2
-make: *** [Makefile:160: all] Error 2
+-- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
+-- Host: localhost    Database: chronos_db
+-- ------------------------------------------------------
+-- Server version	8.0.23
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+INSERT INTO `failed_jobs` VALUES (1,'123e4567-e89b-12d3-a456-426614174000','redis','default','{\"displayName\":\"App\\\\Jobs\\\\ProcessPodcast\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"delay\":null,\"timeout\":null}','Error: Maximum execution time of 60 seconds exceeded in /var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:326','2023-10-12 04:15:20');
+INSERT INTO `failed_jobs` VALUES (2,'123e4567-e89b-12d3-a456-426614174001','redis','default','{...}','Deadlock found when trying to get lock; try restarting transaction','2023-10-12 04:15:22');
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- ERROR: 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
+-- ERROR: 2006 (HY000): MySQL server has gone away
+-- No connection. Trying to reconnect...
+-- Connection id:    4402
+-- Current database: chronos_db
