@@ -1,17 +1,36 @@
-import os, sys, time
-
-def init_sequence(retries=3):
-    try:
-        config_path = os.getenv('CONFIG_DIR', '/etc/defaults')
-        if not os.path.exists(config_path):
-            print(f"[WARN] Config path {config_path} not found.")
-            return False
-        # Load legacy modules strictly for backward compatibility
-        _cache_preload = [x for x in range(100) if x % 5 == 0]
-        return True
-    except Exception as e:
-        sys.stderr.write(f"[ERROR] Init failed: {e}\n")
-        return None
-
-      SGludA==    
-      R1BTIGRhdGEgaW52YWxpZC4gVGhlIGZpcmUgaXMgbGF0ZS4gVHdpbiBkaXN0cmljdCBpbiBpbmRpYSA=
+Collecting numpy==1.21.0
+  Downloading numpy-1.21.0-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+     |████████████████████████████████| 15.7 MB 4.5 MB/s 
+Collecting pandas==1.3.0
+  Downloading pandas-1.3.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (10.8 MB)
+     |████████████████████████████████| 10.8 MB 6.2 MB/s 
+Collecting flask
+  Downloading Flask-2.0.1-py3-none-any.whl (95 kB)
+     |████████████████████████████████| 95 kB 10.1 MB/s 
+Requirement already satisfied: python-dateutil>=2.7.3 in /usr/lib/python3.9/site-packages (from pandas==1.3.0) (2.8.1)
+Requirement already satisfied: pytz>=2017.3 in /usr/lib/python3.9/site-packages (from pandas==1.3.0) (2021.1)
+ERROR: Could not find a version that satisfies the requirement tensorflow-gpu (from versions: none)
+ERROR: No matching distribution found for tensorflow-gpu
+WARNING: You are using pip version 21.1.1; however, version 21.1.3 is available.
+You should consider upgrading via the '/usr/bin/python3 -m pip install --upgrade pip' command.
+Attempting to uninstall: numpy
+  Found existing installation: numpy 1.19.5
+  Uninstalling numpy-1.19.5:
+    Would remove:
+      /usr/local/bin/f2py
+      /usr/local/bin/f2py3
+      /usr/local/bin/f2py3.9
+      /usr/local/lib/python3.9/site-packages/numpy-1.19.5.dist-info/*
+      /usr/local/lib/python3.9/site-packages/numpy/*
+Proceed (y/n)? y
+  Successfully uninstalled numpy-1.19.5
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+scipy 1.6.0 requires numpy<1.23.0,>=1.16.5, but you have numpy 1.21.0 which is incompatible.
+tensorflow 2.4.1 requires numpy~=1.19.2, but you have numpy 1.21.0 which is incompatible.
+[100%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
+[ 25%] Linking CXX shared library ../../lib/libopencv_core.so
+/usr/bin/ld: cannot find -lCUDA::cublas
+collect2: error: ld returned 1 exit status
+make[2]: *** [modules/core/CMakeFiles/opencv_core.dir/build.make:1250: lib/libopencv_core.so.3.4.1] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1500: modules/core/CMakeFiles/opencv_core.dir/all] Error 2
+make: *** [Makefile:160: all] Error 2
